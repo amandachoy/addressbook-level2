@@ -9,8 +9,13 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Block, Street, Unit, Postal Code";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
+
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private Postal_code postalCode;
 
     public final String value;
     private boolean isPrivate;
@@ -22,17 +27,30 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        if (!isValidAddress(address)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
-        this.value = address;
+        String[] value= address.split(", ");
+        this.block = new Block(value[0]);
+        this.street = new Street(value[1]);
+        this.unit = new Unit(value[2]);
+        this.postalCode = new Postal_code(value[3]);
     }
 
     /**
      * Returns true if a given string is a valid person email.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public Block getBlock() {
+        return this.block;
+    }
+    
+    public Block getStreet() {
+        return this.street;
+    }
+    
+    public Block getUnit() {
+        return this.unit;
+    }
+    
+    public Block getPostalCode() {
+        return this.postalCode;
     }
 
     @Override
@@ -49,7 +67,7 @@ public class Address {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Objects.hash(block, street, unit, postalCode);
     }
 
     public boolean isPrivate() {
