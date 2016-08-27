@@ -1,6 +1,11 @@
 package seedu.addressbook.data.person;
 
+import java.util.*;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.address.Block;
+import seedu.addressbook.data.person.address.Postal_code;
+import seedu.addressbook.data.person.address.Street;
+import seedu.addressbook.data.person.address.Unit;
 
 /**
  * Represents a Person's address in the address book.
